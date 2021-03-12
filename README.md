@@ -15,26 +15,26 @@
 ### Association
 
 - has_many :items
-- has_many :address
+- has_many :buys
 
 ## items テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | name| string | null: false |
-| desctiption  | integer | null: false |
+| desctiption  | text | null: false |
 | category   | string | null: false |
 | condition   | string | null: false |
 | shipping_area   | string | null: false |
 | days_to_ship   | integer | null: false |
-| user_id   | references | null: false,foreign_key: true |
+| user   | references | null: false,foreign_key: true |
 | price   | integer | null: false |
 
 
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :buy
 
 ### addressesテーブル
@@ -42,7 +42,7 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | users_address| string | null: false |
-| user_id  | references | null: false,foreign_key: true |
+| user  | references | null: false,foreign_key: true |
 | postal_code   | string | null: false |
 | prefectures   | string | null: false |
 | municipality   | string | null: false |
@@ -53,18 +53,18 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :buys
+- belongs_to :user
 
 
 ### buysテーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| user_id| references | null: false, foreign_key: true |
-| item_id  | integer | null: false |
+| user| references | null: false, foreign_key: true |
+| item  | integer | null: false |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
+- belongs_to :buy
