@@ -43,8 +43,8 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | buy  | references | null: false,foreign_key: true |
-| postal_code_id   | string | null: false |
-| prefectures_id   | string | null: false |
+| postal_code   | string | null: false |
+| shipping_area_id   | integer | null: false |
 | municipality_id   | string | null: false |
 | address   | string | null: false |
 | building_name   | string |  |
