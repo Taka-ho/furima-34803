@@ -4,13 +4,14 @@
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| name     | string | null: false , foreign_key: true|
-| email    | string | null: false |
-| password | string | null: false |
-| name(漢字)|string  | null: false |
-| name(カタカナ)|string| null:false |
+| email    | string | unique: true |
+| encrypted_password | string | null: false |
+| name_kanji_myouji|string  | null: false |
+| name_kanji_namae|string  | null: false |
+| name_katakana_myouji|string  | null: false |
+| name_katakana_namae|string| null:false |
 | nickname  | string | null:false |
-| birth_day | integer | null:false |  
+| birth_day | date   | null:false |  
 ### Association
 
 - has_many :items
@@ -33,15 +34,22 @@
 - has_one :buy
 - has_many :messages
 
-## room_users テーブル
+### address
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user_id| references | null: false, foreign_key: true |
-| item_id| references | null: false, foreign_key: true |
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| users_address| string | null: false |
+| user_id  | integer | null: false |
+| postal_code   | string | null: false |
+| prefectures   | string | null: false |
+| municipality   | string | null: false |
+| address   | string | null: false |
+| building_name   | string | null: false |
+| phone_number   | string | null: false |
 
-### Association
+### buys
 
-- has_one :address
-- has_one :items
-
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| user_id| integer | null: false |
+| item_id  | integer | null: false |
