@@ -41,8 +41,8 @@
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| users_address| string | null: false |
-| user  | references | null: false,foreign_key: true |
+|buys  | references | null: false,foreign_key: true |
+| buy  | references | null: false,foreign_key: true |
 | postal_code   | string | null: false |
 | prefectures   | string | null: false |
 | municipality   | string | null: false |
@@ -61,7 +61,7 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | user| references | null: false, foreign_key: true |
-| item  | integer | null: false |
+| item  | integer | null: false, foreign_key: true |
 
 ### Association
 
