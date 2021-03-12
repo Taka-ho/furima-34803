@@ -4,7 +4,7 @@
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| email    | string | unique: true |
+| email    | string | null: false,unique: true |
 | encrypted_password | string | null: false |
 | name_kanji_myouji|string  | null: false |
 | name_kanji_namae|string  | null: false |
@@ -15,46 +15,56 @@
 ### Association
 
 - has_many :items
-- has_one :address
+- has_many :address
 
 ## items テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| items_name| string | null: false |
-| items_desctiption  | integer | null: false |
+| name| string | null: false |
+| desctiption  | integer | null: false |
 | category   | string | null: false |
 | condition   | string | null: false |
 | shipping_area   | string | null: false |
+| days_to_ship   | integer | null: false |
+| user_id   | references | null: false,foreign_key: true |
+| price   | integer | null: false |
+
 
 
 ### Association
 
-- belongs_to :users, foreign_key: true
+- belongs_to :users
 - has_one :buy
-- has_many :messages
 
-### address
+### addressesテーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | users_address| string | null: false |
-| user_id  | integer | null: false |
+| user_id  | references | null: false,foreign_key: true |
 | postal_code   | string | null: false |
 | prefectures   | string | null: false |
 | municipality   | string | null: false |
 | address   | string | null: false |
-| building_name   | string | null: false |
+| building_name   | string |  |
 | phone_number   | string | null: false |
 
-### buys
+
+### Association
+
+- belongs_to :users
+- has_one :buys
+
+
+### buysテーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| user_id| integer | null: false |
+| user_id| references | null: false, foreign_key: true |
 | item_id  | integer | null: false |
 
 ### Association
 
-- belongs_to :users_id, foreign_key: true
-- belongs_to :items_id, foreign_key: true
+- belongs_to :users
+- belongs_to :items
