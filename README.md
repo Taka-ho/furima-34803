@@ -43,9 +43,9 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | buy  | references | null: false,foreign_key: true |
-| postal_code   | string | null: false |
-| prefectures   | string | null: false |
-| municipality   | string | null: false |
+| postal_code_id   | string | null: false |
+| prefectures_id   | string | null: false |
+| municipality_id   | string | null: false |
 | address   | string | null: false |
 | building_name   | string |  |
 | phone_number   | string | null: false |
