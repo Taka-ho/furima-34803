@@ -45,7 +45,7 @@
 | buy  | references | null: false,foreign_key: true |
 | postal_code   | string | null: false |
 | shipping_area_id   | integer | null: false |
-| municipality_id   | string | null: false |
+| municipality   | string | null: false |
 | address   | string | null: false |
 | building_name   | string |  |
 | phone_number   | string | null: false |
