@@ -23,10 +23,11 @@
 | ------ | ------ | ----------- |
 | name| string | null: false |
 | desctiption  | text | null: false |
-| category_id   | string | null: false |
-| condition   | string | null: false |
-| shipping_area   | string | null: false |
-| days_to_ship   | integer | null: false |
+| category_id   | integer | null: false |
+| condition_id   | integer | null: false |
+| shipping charges_id | integer | null: false |
+| shipping_area_id   | integer | null: false |
+| days_to_ship_id   | integer | null: false |
 | user   | references | null: false,foreign_key: true |
 | price   | integer | null: false |
 
@@ -41,7 +42,6 @@
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-|buys  | references | null: false,foreign_key: true |
 | buy  | references | null: false,foreign_key: true |
 | postal_code   | string | null: false |
 | prefectures   | string | null: false |
@@ -61,7 +61,7 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | user| references | null: false, foreign_key: true |
-| item  | integer | null: false, foreign_key: true |
+| item  | references | null: false, foreign_key: true |
 
 ### Association
 
