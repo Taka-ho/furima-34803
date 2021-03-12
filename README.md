@@ -53,3 +53,8 @@
 | ------ | ------ | ----------- |
 | user_id| integer | null: false |
 | item_id  | integer | null: false |
+
+### Association
+
+- belongs_to :users_id, foreign_key: true
+- belongs_to :items_id, foreign_key: true
