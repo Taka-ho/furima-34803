@@ -23,7 +23,7 @@
 | ------ | ------ | ----------- |
 | name| string | null: false |
 | desctiption  | text | null: false |
-| category   | string | null: false |
+| category_id   | string | null: false |
 | condition   | string | null: false |
 | shipping_area   | string | null: false |
 | days_to_ship   | integer | null: false |
