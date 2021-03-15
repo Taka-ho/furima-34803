@@ -7,7 +7,7 @@ class User < ApplicationRecord
   with_options presence: true do
       validates :email
       validates :nickname
-      validates :encrypted_password, format: { with: /\A[a-zA-Z0-9]+\z/}
+      validates :encrypted_password#, format: { with: /\A[a-zA-Z0-9]+\z/}
       validates :name_kanji_namae, format: { with: /\A[一-龥]+\z/} 
       validates :name_kanji_myoji, format: { with: /\A[一-龥]+\z/}
       validates :name_katakana_namae, format: { with: /\A[ァ-ヶー－]+\z/}
