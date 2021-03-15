@@ -7,12 +7,12 @@ class User < ApplicationRecord
   with_options presence: true do
       validates :email
       validates :nickname
-      validates :encrypted_password
-      validates :name_kanji_namae
-      validates :name_kanji_myoji
-      validates :name_katakana_namae
-      validates :name_katakana_myoji
-      validates :birth_day
+      validates :encrypted_password, format: { with: /\A[a-zA-Z0-9]+\z/}
+      validates :name_kanji_namae, format: { with: /\A[一-龥]+\z/} 
+      validates :name_kanji_myoji, format: { with: /\A[一-龥]+\z/}
+      validates :name_katakana_namae, format: { with: /\A[ァ-ヶー－]+\z/}
+      validates :name_katakana_myoji, format: { with: /\A[ァ-ヶー－]+\z/}
+      validates :birth_day, format: {with: /\A\d{4}-\d{2}-\d{2}\z/}
    end
          
 end
