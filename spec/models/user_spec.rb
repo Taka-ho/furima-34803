@@ -72,6 +72,13 @@ RSpec.describe User, type: :model do
 
     end
 
+    it 'name_kanji_myojiが漢字・平仮名・片仮名以外だと登録出来ない。' do
+      @user.name_kanji_myoji = '111111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Name kanji myoji is invalid"
+
+    end
+
     it 'name_katakana_namaeが空では登録できない' do
       @user.name_katakana_namae = ''
       @user.valid?

@@ -7,8 +7,8 @@ class User < ApplicationRecord
   with_options presence: true do
       validates :nickname
       validates :password, format: { with: /\A[a-zA-Z0-9]+\z/}, length: { minimum: 6 }
-      validates :name_kanji_namae, format: { with: /\A[ぁ-んァ-ン一-龥]/} 
-      validates :name_kanji_myoji, format: { with: /\A[ぁ-んァ-ン一-龥]/}
+      validates :name_kanji_namae, format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/} 
+      validates :name_kanji_myoji, format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/}
       validates :name_katakana_namae, format: { with: /\A[ァ-ヶー－]+\z/}
       validates :name_katakana_myoji, format: { with: /\A[ァ-ヶー－]+\z/}
       validates :birth_day, format: {with: /\A\d{4}-\d{2}-\d{2}\z/}
