@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
     end
+    context 'ユーザー登録ができないとき' do
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -65,6 +66,12 @@ RSpec.describe User, type: :model do
 
     end
 
+    it 'name_kanji_namaeが漢字・平仮名・片仮名以外だと登録出来ない。' do
+      @user.name_kanji_namae = '12345'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Name kanji namae is invalid"
+    end
+
     it 'name_kanji_myojiが空では登録できない' do
       @user.name_kanji_myoji = ''
       @user.valid?
@@ -99,7 +106,12 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Name katakana myoji can't be blank"
 
     end
-    
+
+    it 'name_katakana_myojiが片仮名以外だと登録出来ない' do
+      @user.name_katakana_myoji = '1234567'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Name katakana myoji is invalid"
+    end
     it 'birth_dayが空では登録できない' do
       @user.birth_day = ''
       @user.valid?
@@ -114,4 +126,5 @@ RSpec.describe User, type: :model do
       expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
   end
+end
 end
