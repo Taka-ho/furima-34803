@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.text       :desctiption,          null: false
       t.integer    :category_id  ,        null: false
       t.integer    :condition_id ,        null: false
-      t.integer    :shipping_charges_id , null: false
+      t.integer    :shipping_charge_id , null: false
       t.integer    :shipping_area_id,     null: false
       t.integer    :days_to_ship_id,      null: false
       t.references :user,                 null: false, foregin_key: true

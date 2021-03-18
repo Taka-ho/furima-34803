@@ -34,10 +34,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include "Condition must be other than 1"
     end
 
-    it 'shipping_charges_id空では出品できない' do
-      @item.shipping_charges_id = 1
+    it 'shipping_charge_id空では出品できない' do
+      @item.shipping_charge_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include "Shipping charges must be other than 1"
+      expect(@item.errors.full_messages).to include "Shipping charge must be other than 1"
     end
 
     it 'shipping_area_id空だと場合は出品できない' do
