@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
 
     def index
         @items = Item.all.order("id DESC")
-        @users = User.all
     end
   
     def new
