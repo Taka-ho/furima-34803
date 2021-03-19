@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :update, :edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :item_action, only: [:show, :edit, :update]
     def index
         @items = Item.all.order("id DESC")
@@ -23,17 +23,19 @@ class ItemsController < ApplicationController
     end
       
      def edit 
-      if @item.update
+      @item = Item.edit(item_params)
+      if @item.edit
         redirect_to root_path
       else
         redirect_to root_path
      end
+    end
 
      def update
        if @item.update(item_params)
         redirect_to root_path
       else
-        render :edit
+        render :root_path
       end
     end
 
