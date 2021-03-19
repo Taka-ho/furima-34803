@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
       end
 
     def show
-      @item = Item.find(params[:id])
     end
 
 
@@ -24,8 +23,8 @@ class ItemsController < ApplicationController
     end
       
      def edit
-
      end
+
       private
         def item_params
           params.require(:item).permit(
