@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:create, :new, :show, :edit, :update] do
     resources :orders, only: [:create, :index]
+    resources :form_orders
   end
 
 end
