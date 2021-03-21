@@ -6,8 +6,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :form_orders
-
-  wi_options presence: true do
+  with_options presence: true do
     validates :nickname
     validates :password, length: { minimum: 6 }
     validates :name_kanji_namae, format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ }
