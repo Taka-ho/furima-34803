@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
         render :orders
       end
 
+        @orders = Order.all
       end 
       
       def create
