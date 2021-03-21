@@ -1,15 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :order_params, only: [:index]
     def index
       @item = Item.find_by(params[:id])
-      if @item.buy.present?
-        redirect_to root_path
-      else
-        render :orders
-      end
-
-        @orders = Order.all
+      @orders = Order.all
       end 
       
       def create
@@ -25,6 +19,14 @@ class OrdersController < ApplicationController
       end      
       private
         
+      def index_method 
+        @item = Item.find_by(params[:id])
+          if @item.buy.present? && item.user_id == current_user.id
+            redirect_to root_path
+          else
+            render :orders
+          end
+      end
       
         def order_params
           params.permit(
