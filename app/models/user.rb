@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  
+  has_many :form_orders
   with_options presence: true do
       validates :nickname
       validates :password, length: { minimum: 6 }
