@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
       else
         render :orders
       end
-        @orders = Order.all
 
       end 
       
