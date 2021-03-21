@@ -1,8 +1,14 @@
 class OrdersController < ApplicationController
-    
+  before_action :authenticate_user!
+
     def index
+      @item = Item.find_by(params[:id])
+      if @item.buy.present?
+        redirect_to root_path
+      else
+        render :orders
+      end
         @orders = Order.all
-        @item = Item.find_by(params[:id])
 
       end 
       
@@ -37,4 +43,5 @@ class OrdersController < ApplicationController
           )
         end
 
+        
 end
