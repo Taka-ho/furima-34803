@@ -5,9 +5,9 @@ class FormOrder
 
 
   with_options presence: true do
-    validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}\z/ }
+    validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/ }
         validates :shipping_area_id
-        validates :municipality
+        validates :municipality, format: {with: /\A[ぁ-んァ-ン一-龥]/}
         validates :address
         validates :building_name
         validates :phone_number, format: { with: /\A[0-9]+\z/ }
