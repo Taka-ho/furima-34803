@@ -1,16 +1,14 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
    before_action :index_method, only: [:index, :create]
-   before_action :params_method, only: [:index, :create]
+   before_action :params_method, only: [:index, :create, :index_method ]
 
     def index
-      @item = Item.find_by(params[:id])
       @order = FormOrder.new
     end
 
     
       def create
-        @item = Item.find_by(params[:id])
         @order = FormOrder.new(order_params)
        if @order.valid?
 
@@ -27,7 +25,6 @@ class OrdersController < ApplicationController
     end
       
       def index_method 
-        @item = Item.find_by(params[:id])
           if @item.buy.present? || @item.user_id == current_user.id
             redirect_to root_path
           end
