@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-   before_action :index_method, only: [:index, :create]
-   before_action :params_method, only: [:index, :create, :index_method ]
+  before_action :params_method, only: [:index, :create, :index_method ]
+  before_action :index_method, only: [:index, :create]
 
     def index
       @order = FormOrder.new
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
         end
 
         def pay_item
-          Payjp.api_key = "PAYJP_SECRET_KEY"
+          Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
           Payjp::Charge.create(
             amount: @item.price,  
             card: order_params[:token],    

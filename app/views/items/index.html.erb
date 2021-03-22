@@ -156,9 +156,10 @@
           </div>
         </div>
         <% end %>
+        </li>
         <% end %>
 
-      </li>
+        <% end %>
       
       <% if @items.blank? %>
       <li class='list'>
@@ -173,14 +174,12 @@
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
-            </div>
+              </div>
+              </div>
           </div>
-
-          </div>
-        <% end %>
       </li>
-
       <% end %>
+
       <% end %>
 
       </ul>

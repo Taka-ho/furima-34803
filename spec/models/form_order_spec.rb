@@ -90,6 +90,12 @@ RSpec.describe Item, type: :model do
 
     end
 
+    it 'postal_codeが8文字以上だと購入できない' do
+      @order.postal_code = '1111111111'
+      @order.valid?
+      expect(@order.errors.full_messages).to include "Postal code is too long (maximum is 8 characters)"
+    end
+
     it 'phone_numberが数字だとできない' do
     @order.phone_number = 'aaaaaaa'
     @order.valid?
@@ -106,6 +112,12 @@ RSpec.describe Item, type: :model do
       @order.phone_number = '123-4567-89123'
       @order.valid?
       expect( @order.errors.full_messages).to include "Phone number is invalid"
+    end
+
+    it 'phone_numberは12桁以上だと登録できない' do
+      @order.phone_number = '1234567890123'
+      @order.valid?
+      expect( @order.errors.full_messages).to include "Phone number is too long (maximum is 12 characters)"
     end
 end
 end
