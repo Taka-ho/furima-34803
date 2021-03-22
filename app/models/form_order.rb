@@ -1,7 +1,7 @@
 class FormOrder
 
     include ActiveModel::Model
-  attr_accessor :token, :item_id, :price, :user_id, :postal_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number
+  attr_accessor :token, :item_id, :user_id, :postal_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number
 
 
   with_options presence: true do
@@ -9,9 +9,11 @@ class FormOrder
         validates :shipping_area_id
         validates :municipality, format: {with: /\A[ぁ-んァ-ン一-龥]/}
         validates :address
-        validates :building_name
         validates :phone_number, format: { with: /\A[0-9]+\z/ }
+        validates :user_id
+        validates :item_id
  end
+ 
  validates :shipping_area_id, numericality: { other_than: 1 }
 
     def save 

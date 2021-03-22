@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :item_action, only: [:show, :edit, :update, :destroy]
-  before_action :edit_method, only: [:edit]
+  before_action :edit_method, only: [:edit,:update, :destroy]
 
   def index
     @items = Item.all.order('id DESC')
@@ -26,8 +26,7 @@ class ItemsController < ApplicationController
   def edit
     if @item.user_id == current_user.id 
       render :edit
-    else
-      redirect_to root_path
+   
     end
   end
   
@@ -49,8 +48,7 @@ class ItemsController < ApplicationController
   private
 
   def edit_method 
-    @item = Item.find_by(params[:id])
-      if @item.buy.present? || @item.user_id == current_user.id
+      if @item.buy.present? || @item.user_id != current_user.id
         redirect_to root_path
       end
   end

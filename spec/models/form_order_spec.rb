@@ -1,7 +1,10 @@
 require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
-    @order = FactoryBot.build(:form_order)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:form_order, user_id: @user.id, item_id: @item.id)
+    sleep 2
   end
 
   describe '商品購入' do
@@ -9,7 +12,12 @@ RSpec.describe Item, type: :model do
       it 'すべてを入力したら保存できる' do
         expect(@order).to be_valid
       end
+      it '建物名が抜けていても登録できること' do
+        @order.building_name = ''
+        expect(@order).to be_valid
+      end
     end
+
     context '商品の購入ができないとき' do
     it 'postal_codeが空の場合' do
       @order.postal_code = ''
@@ -17,47 +25,53 @@ RSpec.describe Item, type: :model do
       expect(@order.errors.full_messages).to include "Postal code can't be blank"
     end
     #値が空の場合のテスト
-    it 'が空では出品できない' do
+    it 'shipping_area_idが空では購入できない' do
       @order.shipping_area_id = ''
       @order.valid?
       expect(@order.errors.full_messages).to include "Shipping area can't be blank"
     end
 
-    it 'municipalityが空だと出品できない' do
+    it 'municipalityが空だと購入できない' do
       @order.municipality = ''
       @order.valid?
       expect(@order.errors.full_messages).to include "Municipality can't be blank"
     end
 
-    it 'addressが空では出品できない' do
+    it 'addressが空では購入できない' do
       @order.address = ''
       @order.valid?
       expect(@order.errors.full_messages).to include "Address can't be blank"
     end
 
-    it 'building_name空では出品できない' do
-      @order.building_name = ''
-      @order.valid?
-      expect(@order.errors.full_messages).to include "Building name can't be blank"
-    end
-
-    it 'phone_number空だと場合は出品できない' do
+    it 'phone_number空だと場合は購入できない' do
       @order.phone_number = ''
       @order.valid?
       expect(@order.errors.full_messages).to include "Phone number can't be blank"
+    end
+
+    it 'user_idが空だと購入できない' do
+      @order.user_id = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include "User can't be blank"
+    end
+
+    it 'item_id我からの場合購入できない' do
+      @order.item_id = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include "Item can't be blank"
     end
 
         #値が空の場合のテスト(ここまで)
 
     #入力方法がおかしい場合のテスト
 
-    it 'postal_codeが文字だと出品できない' do
+    it 'postal_codeが文字だと購入できない' do
       @order.postal_code = 'aaaaaaa'
       @order.valid?
       expect( @order.errors.full_messages).to include "Postal code is invalid"
     end
 
-    it 'postal_codeが全角の数字だと出品できない' do
+    it 'postal_codeが全角の数字だと購入できない' do
       @order.postal_code = '１１１１'
       @order.valid?
       expect(@order.errors.full_messages).to include "Postal code is invalid"

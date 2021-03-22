@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-   before_action :index_method, only: [:index]
-    
+   before_action :index_method, only: [:index, :create]
+   before_action :params_method, only: [:index, :create]
+
     def index
       @item = Item.find_by(params[:id])
-      @orders = Order.all
       @order = FormOrder.new
     end
 
@@ -22,6 +22,9 @@ class OrdersController < ApplicationController
         end
       end      
       private
+    def params_method
+      @item = Item.find_by(params[:id])
+    end
       
       def index_method 
         @item = Item.find_by(params[:id])
@@ -38,7 +41,7 @@ class OrdersController < ApplicationController
         end
 
         def pay_item
-          Payjp.api_key = "sk_test_86736b5d8e4ab996c064a721"
+          Payjp.api_key = "PAYJP_SECRET_KEY"
           Payjp::Charge.create(
             amount: @item.price,  
             card: order_params[:token],    
