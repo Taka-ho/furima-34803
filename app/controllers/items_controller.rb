@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :item_action, only: [:show, :edit, :update, :destroy]
+  before_action :edit_method, only: [:edit]
+
   def index
     @items = Item.all.order('id DESC')
   end
@@ -22,9 +24,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_id == current_user.id
+    if @item.user_id == current_user.id 
       render :edit
-
     else
       redirect_to root_path
     end
@@ -47,6 +48,13 @@ class ItemsController < ApplicationController
 
   private
 
+  def edit_method 
+    @item = Item.find_by(params[:id])
+      if @item.buy.present? || @item.user_id == current_user.id
+        redirect_to root_path
+      end
+  end
+
   def item_params
     params.require(:item).permit(
       :image, :name, :desctiption, :category_id, :condition_id, :shipping_charge_id, :shipping_area_id, :days_to_ship_id, :price
@@ -57,3 +65,4 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 end
+
