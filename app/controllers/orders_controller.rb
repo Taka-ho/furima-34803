@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :params_method, only: [:index, :create, :index_method ]
+  before_action :params_method, only: [:index, :create ]
   before_action :index_method, only: [:index, :create]
 
     def index
@@ -21,7 +21,8 @@ class OrdersController < ApplicationController
       end      
       private
     def params_method
-      @item = Item.find_by(params[:id])
+    
+      @item = Item.find(params[:item_id])
     end
       
       def index_method 

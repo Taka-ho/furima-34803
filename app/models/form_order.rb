@@ -21,7 +21,8 @@ class FormOrder
         @buy = Buy.create(item_id: item_id, user_id: user_id)
 
         Order.create( 
-            @buy_id: buy.id, postal_code: postal_code, shipping_area_id: shipping_area_id, municipality: municipality, address: address, building_name: building_name, phone_number: phone_number)
+            buy_id: @buy.id, postal_code: postal_code, shipping_area_id: shipping_area_id, municipality: municipality, address: address, building_name: building_name, phone_number: phone_number
+            )
   end
 
 
